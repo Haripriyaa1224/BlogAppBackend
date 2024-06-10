@@ -3,6 +3,11 @@ const authRoutes = require('./Routes/auth');
 const postRoutes = require('./Routes/posts');
 const { default: mongoose } = require('mongoose');
 const jwtValidation = require('./Middleware/jwtValidation');
+const dotenv = require('dotenv')
+
+dotenv.config();
+
+console.log(process.env.CONNECTION_STRING);
 
 const app = express();
 
