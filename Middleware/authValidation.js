@@ -10,13 +10,7 @@ const validateSignUp = [
     body('email')
         .isEmail()
         .withMessage('Email is invalid')
-        .normalizeEmail()
-        .custom(async (email) => {
-            const user = await User.findOne({ email });
-            if (user) {
-                throw new Error('Email already in use');
-            }
-        }),
+        .normalizeEmail(),
     body('password')
         .isLength({ min: 6 })
         .withMessage('Password must be at least 6 characters long'),

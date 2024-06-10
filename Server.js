@@ -7,7 +7,7 @@ const jwtValidation = require('./Middleware/jwtValidation');
 
 // dotenv.config();
 
-// console.log(process.env.CONNECTION_STRING);
+
 
 const app = express();
 
@@ -16,6 +16,8 @@ app.use(express.json());
 //Configuration for dotenv
 require('dotenv').config();
 const port = process.env.PORT;
+
+// console.log(process.env.CONNECTION_STRING);
 
 app.use('/auth', authRoutes);
 app.use(jwtValidation, postRoutes);
