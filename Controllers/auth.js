@@ -9,6 +9,18 @@ const signUp = async (req, res) =>{
     try{
         const {name, email, password} = req.body;
 
+        if (!name || typeof name !== 'string' || name.trim() === '') {
+            throw new Error('Name is required and must be a non-empty string.');
+          }
+      
+          if (!email || typeof email !== 'string' || !email.trim().match(/^[\w-\.]+@[\w-\.]+\.[a-zA-Z]{2,}$/)) {
+            throw new Error('Invalid email format. Please enter a valid email address.');
+          }
+      
+          if (!password || typeof password !== 'string' || password.length < 6) {
+            throw new Error('Password is required and must be at least 8 characters long.');
+          }
+
         //to hash password
         const salt = bcrypt.genSaltSync(5);
         const hash = bcrypt.hashSync(password, salt);
