@@ -26,12 +26,12 @@ const signUp = async (req, res) =>{
         const hash = bcrypt.hashSync(password, salt);
     
         //to add to Database
-        const newUser = new userModel({name:name, email:email, password:hash});
+        const newUser = new UserModel({name:name, email:email, password:hash});
         const newlyInsertedUser = await newUser.save();
         res.json({success:true, message:"User registration successful, Please Login", id: newlyInsertedUser._id});
     }
     catch(err){
-        res.status(500).json({ success: false, message: error.message });
+        res.status(500).json({ success: false, message: err.message });
     }
 
     
